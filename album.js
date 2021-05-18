@@ -1,11 +1,12 @@
-$(function () {
+$(() => {
   loadRecipies();
-  $("#albums").on("click", ".btn-danger", handleDelete);
-  $("#albums").on("click", ".btn-warning", handleUpdate);
+  $("#recipes").on("click", ".btn-danger", handleDelete);
+  $("#recipes").on("click", ".btn-warning", handleUpdate);
   $("#addBtn").click(addRecipe);
   $("#updateSave").click(function () {
     var id = $("#updateId").val();
-    var title = $("#updateTitle").val();
+    var title = $("#updatetitle").val();
+
     $.ajax({
       url: "https://jsonplaceholder.typicode.com/albums/" + id,
       data: { title },
@@ -26,7 +27,8 @@ function handleUpdate() {
     "https://jsonplaceholder.typicode.com/albums/" + id,
     function (response) {
       $("#updateId").val(response.id);
-      $("#updateTitle").val(response.title);
+      $("#updatetitle").val(response.title);
+      $("#updateemail").val(response.email);
       $("#updateModal").modal("show");
     }
   );
@@ -65,19 +67,18 @@ function loadRecipies() {
     url: "https://jsonplaceholder.typicode.com/albums",
     method: "GET",
     error: function (response) {
-      var albums = $("#albums");
-      albums.html("An Error has occured");
+      var recipes = $("#recipes");
+      recipes.html("An Error has occured");
     },
     success: function (response) {
       console.log(response);
-      var albums = $("#albums");
-      albums.empty();
+      var recipes = $("#recipes");
+      recipes.empty();
       for (var i = 0; i < response.length; i++) {
         var rec = response[i];
-        albums.append(
-          `<div class="recipe" data-id="${rec.id}"><h3>${rec.title}</h3><p><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button></p><br></div>`
+        recipes.append(
+          `<div class="recipe" data-id="${rec.id}"><h3> ${rec.id}-> ${rec.title}</h3><p><button class="btn ml-1 btn-danger btn-sm float-right btn-del">delete</button><button class="btn btn-warning btn-sm float-right btn-del">Edit</button> </p></div>`
         );
-        // albums.append("<div><h3>" + rec.title + "</h3></div>");
       }
     },
   });

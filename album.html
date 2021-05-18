@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="jquery-3.4.1.min.js"></script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="jqcruda.js"></script>
-    <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="jqstyles.css" />
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+
+    <script src="./album.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./jqstyles.css" />
   </head>
   <body class="container">
-    <h1>Albums API Client</h1>
+    <h1>Album API</h1>
 
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn btn-outline-primary btn-lg"
+      class="btn btn-primary btn-lg btn-rec"
       data-toggle="modal"
       data-target="#addModal"
     >
@@ -27,7 +28,7 @@
       id="addModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="modelTitleId"
+      aria-labelledby="modeltitleId"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
@@ -43,28 +44,41 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-email">
             <div class="form-group">
-              <label for="title">Title</label>
+              <label for="title">title</label>
               <input
                 type="text"
                 class="form-control"
-                name="title"
+                title="title"
                 id="title"
                 aria-describedby="titleHelp"
-                placeholder="Title of the Album"
-                required
+                placeholder="title of the Album"
               />
-              <small id="titleHelp" class="form-text" style="color: grey"
-                >Enter Title of the Album</small
+              <small id="titleHelp" class="form-text text-muted"
+                >Enter title of the Album</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="email">email</label>
+              <input
+                type="text"
+                class="form-control"
+                title="email"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Enter Details</small
               >
             </div>
           </div>
           <div class="modal-footer">
-            <button id="addBtn" class="btn btn-outline-info">Add Album</button>
+            <button id="addBtn" class="btn btn-info">Add Album</button>
             <button
               type="button"
-              class="btn btn-outline-secondary"
+              class="btn btn-secondary"
               data-dismiss="modal"
             >
               Close
@@ -74,14 +88,14 @@
       </div>
     </div>
 
-    <div id="albums">Loading ...</div>
+    <div id="recipes">Loading ...</div>
 
     <div
       class="modal fade"
       id="updateModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="modelTitleId"
+      aria-labelledby="modeltitleId"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
@@ -97,31 +111,37 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-email">
             <input type="hidden" id="updateId" /> <br />
             <div class="form-group">
-              <label for="updateTitle">Title</label>
+              <label for="updatetitle">title</label>
               <input
                 type="text"
                 class="form-control"
-                name="updateTitle"
-                id="updateTitle"
+                title="updatetitle"
+                id="updatetitle"
                 aria-describedby="updateHelpId"
                 placeholder=""
-                required
               />
-              <small id="updateHelpId" class="form-text" style="color: grey"
-                >Enter Title to Update</small
+              <small id="updateHelpId" class="form-text text-muted"
+                >Enter title to Update</small
               >
+            </div>
+            <div class="form-group">
+              <label for="updateemail">email</label>
+              <textarea
+                class="form-control"
+                title="updateemail"
+                id="updateemail"
+                rows="3"
+              ></textarea>
             </div>
           </div>
           <div class="modal-footer">
-            <button id="updateSave" class="btn btn-outline-primary">
-              Update
-            </button>
+            <button id="updateSave" class="btn btn-primary">Update</button>
             <button
               type="button"
-              class="btn btn-outline-secondary"
+              class="btn btn-secondary"
               data-dismiss="modal"
             >
               Close

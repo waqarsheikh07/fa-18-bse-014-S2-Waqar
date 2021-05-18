@@ -7,6 +7,10 @@ $(() => {
     var id = $("#updateId").val();
     var name = $("#updatename").val();
     var email = $("#updateemail").val();
+    if (!validateEmail(email)) {
+      alert("invalid email");
+      return;
+    }
     $.ajax({
       url: "https://jsonplaceholder.typicode.com/users/" + id,
       data: { name, email },
