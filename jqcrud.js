@@ -82,7 +82,7 @@ function loadRecipies() {
       for (var i = 0; i < response.length; i++) {
         var rec = response[i];
         recipes.append(
-          `<div class="recipe" data-id="${rec.id}"><h3>${rec.name}</h3><p><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button>${rec.email}</p></div>`
+          `<div class="recipe" data-id="${rec.id}"><h3>${rec.name}</h3><p><button class="btn btn-danger btn-sm float-right btn-del">delete</button><button class="btn btn-warning btn-sm float-right btn-del">Edit</button>${rec.email}</p></div>`
         );
       }
     },
@@ -92,7 +92,6 @@ function validateEmail(emailField) {
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([com]{3})$/;
 
   if (reg.test(emailField) == false) {
-    alert("Invalid Email Address ");
     return false;
   }
   return true;

@@ -2,3 +2,77 @@
   border-bottom: 2px dashed blue;
   margin-bottom: 5px;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+}
+.container h1 {
+  font-family: "Grand Hotel", cursive;
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 30px auto;
+  border-bottom: 2px dashed #ccc;
+  transition: all 0.4s ease;
+}
+.container h1:hover {
+  opacity: 0.7;
+}
+
+.recipe {
+  border-bottom: 2px dotted #000;
+  margin-top: 10px;
+
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.recipe h3 {
+  text-transform: uppercase;
+}
+.recipe p {
+  font-size: 11;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-rec,
+.btn-del,
+#war {
+  border-radius: 10px;
+  transition: all 0.5s ease;
+  font-weight: 900;
+}
+.btn-rec {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+#war {
+  margin: 0 10px;
+}
+.btn-rec:hover,
+.btn-del:hover,
+#war:hover {
+  box-shadow: 3px 3px 5px #aaa;
+  transform: scale(1.013);
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.btn-rec:hover {
+  color: #17a2b8;
+}
+.btn-del:hover {
+  color: #dc3545;
+}
+.recipe p:hover {
+  font-size: 1.01em;
+}
+#war:hover {
+  color: #ffc20c;
+  background-color: #555;
+  border: 1px solid #ffc20c;
+}
