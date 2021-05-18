@@ -5,11 +5,11 @@ $(() => {
   $("#addBtn").click(addRecipe);
   $("#updateSave").click(function () {
     var id = $("#updateId").val();
-    var name = $("#updatename").val();
-    var email = $("#updateemail").val();
+    var title = $("#updateTitle").val();
+    var body = $("#updateBody").val();
     $.ajax({
-      url: "https://jsonplaceholder.typicode.com/users/" + id,
-      data: { name, email },
+      url: "https://usman-recipes.herokuapp.com/api/recipes/" + id,
+      data: { title, body },
       method: "PUT",
       success: function (response) {
         console.log(response);
@@ -82,7 +82,7 @@ function loadRecipies() {
       for (var i = 0; i < response.length; i++) {
         var rec = response[i];
         recipes.append(
-          `<div class="recipe" data-id="${rec.id}"><h3>${rec.name}</h3><p><button class="btn ml-1 btn-danger btn-sm float-right btn-del">delete</button><button class="btn btn-warning btn-sm float-right btn-del">Edit</button>${rec.email}</p></div>`
+          `<div class="recipe" data-id="${rec.id}"><h3>${rec.name}</h3><p><button class="btn btn-danger btn-sm float-right btn-del">delete</button><button class="btn btn-warning btn-sm float-right btn-del">Edit</button>${rec.email}</p></div>`
         );
       }
     },
