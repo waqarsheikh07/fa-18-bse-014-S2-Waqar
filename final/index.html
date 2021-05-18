@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script> -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./jqcrud.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./jqstyles.css" />
+  </head>
+  <body class="container">
+    <h1>Recipies API Client</h1>
+
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary btn-lg"
+      data-toggle="modal"
+      data-target="#addModal"
+    >
+      Add Recipe
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelnameId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-name">Add New Recipe</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-email">
+            <div class="form-group">
+              <label for="name">name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                id="name"
+                aria-describedby="nameHelp"
+                placeholder="name of the Recipe"
+              />
+              <small id="nameHelp" class="form-text text-muted"
+                >Enter name of the Recipe</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="email">email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Recipe Details"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Enter Details</small
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="addBtn" class="btn btn-info">Add Recipe</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="recipes">Loading ...</div>
+
+    <div
+      class="modal fade"
+      id="updateModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelnameId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-name">Update Record</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-email">
+            <input type="hidden" id="updateId" /> <br />
+            <div class="form-group">
+              <label for="updatename">name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="updatename"
+                id="updatename"
+                aria-describedby="updateHelpId"
+                placeholder=""
+              />
+              <small id="updateHelpId" class="form-text text-muted"
+                >Enter name to Update</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="updateemail">email</label>
+              <textarea
+                class="form-control"
+                name="updateemail"
+                id="updateemail"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="updateSave" class="btn btn-primary">Update</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
