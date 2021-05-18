@@ -1,15 +1,14 @@
-$(() => {
+$(function () {
   loadRecipies();
-  $("#recipes").on("click", ".btn-danger", handleDelete);
-  $("#recipes").on("click", ".btn-warning", handleUpdate);
+  $("#albums").on("click", ".btn-danger", handleDelete);
+  $("#albums").on("click", ".btn-warning", handleUpdate);
   $("#addBtn").click(addRecipe);
   $("#updateSave").click(function () {
     var id = $("#updateId").val();
     var title = $("#updateTitle").val();
-    var body = $("#updateBody").val();
     $.ajax({
-      url: "https://usman-recipes.herokuapp.com/api/recipes/" + id,
-      data: { title, body },
+      url: "https://jsonplaceholder.typicode.com/albums/" + id,
+      data: { title },
       method: "PUT",
       success: function (response) {
         console.log(response);
@@ -24,31 +23,25 @@ function handleUpdate() {
   var parentDiv = btn.closest(".recipe");
   let id = parentDiv.attr("data-id");
   $.get(
-    "https://jsonplaceholder.typicode.com/users/" + id,
+    "https://jsonplaceholder.typicode.com/albums/" + id,
     function (response) {
       $("#updateId").val(response.id);
-      $("#updatename").val(response.name);
-      $("#updateemail").val(response.email);
+      $("#updateTitle").val(response.title);
       $("#updateModal").modal("show");
     }
   );
 }
 function addRecipe() {
-  var name = $("#name").val();
-  var email = $("#email").val();
-  if (!validateEmail(email)) {
-    alert("invalid email");
-    return;
-  }
+  var title = $("#title").val();
 
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/users",
+    url: "https://jsonplaceholder.typicode.com/albums",
     method: "POST",
-    data: { name, email },
+    data: { title },
     success: function (response) {
       console.log(response);
-      $("#name").val("");
-      $("#email").val("");
+      $("#title").val("");
+
       loadRecipies();
       $("#addModal").modal("hide");
     },
@@ -60,7 +53,7 @@ function handleDelete() {
   let id = parentDiv.attr("data-id");
   console.log(id);
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/users/" + id,
+    url: "https://jsonplaceholder.typicode.com/albums/" + id,
     method: "DELETE",
     success: function () {
       loadRecipies();
@@ -69,30 +62,23 @@ function handleDelete() {
 }
 function loadRecipies() {
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/users",
+    url: "https://jsonplaceholder.typicode.com/albums",
     method: "GET",
     error: function (response) {
-      var recipes = $("#recipes");
-      recipes.html("An Error has occured");
+      var albums = $("#albums");
+      albums.html("An Error has occured");
     },
     success: function (response) {
       console.log(response);
-      var recipes = $("#recipes");
-      recipes.empty();
+      var albums = $("#albums");
+      albums.empty();
       for (var i = 0; i < response.length; i++) {
         var rec = response[i];
-        recipes.append(
-          `<div class="recipe" data-id="${rec.id}"><h3>${rec.name}</h3><p><button class="btn btn-danger btn-sm float-right btn-del">delete</button><button class="btn btn-warning btn-sm float-right btn-del">Edit</button>${rec.email}</p></div>`
+        albums.append(
+          `<div class="recipe" data-id="${rec.id}"><h3>${rec.title}</h3><p><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button></p><br></div>`
         );
+        // albums.append("<div><h3>" + rec.title + "</h3></div>");
       }
     },
   });
-}
-function validateEmail(emailField) {
-  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([com]{3})$/;
-
-  if (reg.test(emailField) == false) {
-    return false;
-  }
-  return true;
 }
